@@ -2,10 +2,10 @@ package lt.codeacademy.api.controller;
 
 import lt.codeacademy.api.entity.Post;
 import lt.codeacademy.api.service.PostService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -20,13 +20,19 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping
+    /* @GetMapping
     public String sayHi(){
         return "Preved medved";
-    }
+    } */
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<Post> getPosts() {
         return postService.getPosts();
+    }
+
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createPost(@Valid @RequestBody Post post) {
+         postService.createPost(post);
     }
 }
