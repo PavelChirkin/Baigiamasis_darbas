@@ -27,7 +27,7 @@ public class Comment {
     @NotBlank
     private String text;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "article_id")
+    @JoinColumn(name = "post_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Post post;
