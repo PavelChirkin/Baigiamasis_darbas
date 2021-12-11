@@ -35,7 +35,7 @@ public class CommentService {
     }
 
     public Comment getComment(UUID id) {
-        return commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException(id));
+        return commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("id"));
     }
 
     public List<Comment> getAllCommentsByPostId(UUID postId) {

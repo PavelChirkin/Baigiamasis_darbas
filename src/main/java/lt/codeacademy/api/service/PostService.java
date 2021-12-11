@@ -29,12 +29,21 @@ public class PostService {
         return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
     }
 
+    public boolean postExists(UUID id) {
+            return postRepository.findById(id).isPresent();
+    }
+
     public void updatePost(Post post) {
         postRepository.save(post);
     }
 
     public void deletePost(UUID id) {
         postRepository.deleteById(id);
+    }
+
+    public List<Post> findPosts(String query) {
+        query = "%" + query + "%";
+        return postRepository.findByTitleLikeOrCategoryLike(query, query);
     }
 
 }

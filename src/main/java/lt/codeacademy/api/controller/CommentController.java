@@ -2,6 +2,7 @@ package lt.codeacademy.api.controller;
 
 import lt.codeacademy.api.entity.Post;
 import lt.codeacademy.api.entity.Comment;
+import lt.codeacademy.api.exception.CommentNotFoundException;
 import lt.codeacademy.api.service.CommentService;
 import lt.codeacademy.api.service.PostService;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,31 @@ public class CommentController {
     @GetMapping(value = "/posts/{postId}/comments", produces = APPLICATION_JSON_VALUE)
     public List<Comment> getAllCommentsByPostId(@PathVariable (value = "postId") UUID postId) {
         return commentService.getAllCommentsByPostId(postId);
+    }
+
+    @PostMapping("/posts/{postId}/comments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createComment(@PathVariable (value = "postId") UUID postId,
+                                 @Valid @RequestBody Comment comment) {
+        //postService.getPost(postId).getCommentSet().add(comment);
+        comment.setPost(postService.getPost(postId));
+        commentService.saveComment(comment);
+    }
+
+    @PutMapping(value = "/posts/{postId}/comments", consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateComment(@PathVariable (value = "postId") UUID postId, @RequestBody Comment comment) {
+        if(postService.postExists(postId)) {
+            commentService.updateComment(comment);
+        }
+    }
+
+    @DeleteMapping("/posts/{postId}/comments/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(value = "postId") UUID postId, @PathVariable(value = "commentId") UUID id) {
+        if(postService.postExists(postId)) {
+            commentService.deleteComment(id);
+        }
     }
 
 }

@@ -29,8 +29,8 @@ public class Post {
     @Size(max = 1000)
     @NotBlank
     private String fulltext;
-//    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Set<Comment> commentSet;
+ //   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  //  private Set<Comment> commentSet;
 
 
 }
