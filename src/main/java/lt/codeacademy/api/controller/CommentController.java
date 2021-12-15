@@ -22,7 +22,7 @@ public class CommentController {
     private final CommentService commentService;
     private PostService postService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService, PostService postService) {
         this.commentService = commentService;
         this.postService = postService;
     }
@@ -43,15 +43,17 @@ public class CommentController {
 
     @PutMapping(value = "/posts/{postId}/comments", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateComment(@PathVariable (value = "postId") UUID postId, @RequestBody Comment comment) {
+    public void updateComment(@PathVariable (value = "postId") UUID postId,
+                              @Valid @RequestBody Comment comment) {
         if(postService.postExists(postId)) {
+            comment.setPost(postService.getPost(postId));
             commentService.updateComment(comment);
         }
     }
 
     @DeleteMapping("/posts/{postId}/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable(value = "postId") UUID postId, @PathVariable(value = "commentId") UUID id) {
+    public void deleteComment(@PathVariable(value = "postId") UUID postId, @PathVariable(value = "commentId") UUID id) {
         if(postService.postExists(postId)) {
             commentService.deleteComment(id);
         }
