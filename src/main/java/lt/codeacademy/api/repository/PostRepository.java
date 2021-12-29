@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, UUID> {
 
     @Query("select p from Post p where p.title like %:text% or p.category like %:text%")
     List<Post> findLike(@Param("text") String text);
+
+   // void update(UUID id, Post post);
 }
