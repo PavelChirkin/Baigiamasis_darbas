@@ -6,7 +6,7 @@ VALUES ('48a95af7-8b83-4a08-8001-0f865db8ea26', 'Iphone 13', 'New gorgeous Phone
        ('45a95af7-8b83-4a08-8001-0f865db8ea27', 'Samsung Z2', 'Not a new Phone', 'gadgets','Leo urna molestie at elementum eu facilisis sed. Velit sed ullamcorper morbi tincidunt. Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices. Consequat ac felis donec et odio. Nam at lectus urna duis convallis.');
 
 INSERT INTO COMMENTS(id,text, post_id) VALUES
-                                           ('cbdee4f9-5763-4afc-85ed-98b2fdefb31d', 'Kas cia per nesamone', '48a95af7-8b83-4a08-8001-0f865db8ea26'),
+                                           ('cbdee4f9-5763-4afc-85ed-98b2fdefb31d', 'Sunku ivertinti gadzeta vien is pateiktos straipsnije informacijos', '48a95af7-8b83-4a08-8001-0f865db8ea26'),
                                            ('bbdee4f9-5763-4afc-85ed-98b2fdefb35e', 'Koks puikus temos isdestymas', '48a95af7-8b83-4a08-8001-0f865db8ea26');
 
 INSERT INTO USERS(id, username, name, surname, country, city, street, zip_code, phone, password)
